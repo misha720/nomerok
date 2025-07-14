@@ -5,6 +5,7 @@ from DataBase import DataBase
 
 from loguru import logger
 import datetime
+import sys
 
 from contextlib import suppress
 
@@ -181,6 +182,13 @@ async def get_statistics(message: types.Message):
 
         # Отправка сообщения в чат
         await message.answer(text_for_answer)
+
+# Обработка команды /exit
+@dp.message(F.text == "/exit")
+async def exit(message: types.Message):
+    if int(message.from_user.id) in ADMIN:
+        base.disconnect()
+        sys.exit(1)
 
 # Обработка номера и поиск
 @dp.message()
