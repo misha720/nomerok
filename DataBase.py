@@ -95,16 +95,13 @@ class DataBase:
         #   Алгоритм
         # Перебираем базу SDL
         for lot in self.base_cdl:
-            self.logger.debug("___________________")
             lot_search_text = str(lot['text']).lower() + str(lot["region"])
-            self.logger.debug(lot_search_text +" / "+str(array_text))
             # Перебираем текст SDL в лоте
             for lot_letter_index, lot_letter_item in enumerate(lot_search_text): # - lot['text'].lower()
 
                 # Проверяем на совпадения
                 if lot_letter_index < len(array_text):
                     if array_text[lot_letter_index] == '*' or array_text[lot_letter_index] == lot_letter_item:
-                        self.logger.debug(array_text[lot_letter_index]+ " - " + lot_letter_item)
                         # Если совпал, прибавляем procent_offset к procent_lot
                         procent_lot += procent_offset
                 else:
@@ -115,7 +112,6 @@ class DataBase:
                 bundle_dict[str(lot['text'])] = procent_lot
             procent_lot = 0
 
-        self.logger.debug(bundle_dict)
         # Колибровка списка с помощью self.get_sdl_procent_filter
         results = self.get_sdl_procent_filter(bundle_dict)
 
