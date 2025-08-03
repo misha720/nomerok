@@ -213,6 +213,8 @@ class DataBase:
                         item_key = "(забронировано)"
                     elif raw_json_data['УСЛОВИЕ'][index_str] == "торг с хозяином":
                         item_key = ""
+                    else:
+                        item_key = ""
                 else:
                     # Столбец не найден
                     self.logger.error("Столбец 'Условие' не найден")
